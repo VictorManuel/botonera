@@ -1,0 +1,13 @@
+{
+  "name": "botonera-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Botonera de sonidos mobile-first, instalable y offline.",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build.mjs",
+    "test": "node --test",
+    "check": "node --check js/app.js && node --check js/audio-engine.js && node --check js/backup.js && node --check js/config.js && node --check js/db.js && node --check sw.js"
+  }
+}

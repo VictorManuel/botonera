@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#11100f" />
+    <meta name="description" content="Tu botonera de sonidos personal, rápida y disponible sin conexión." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Botonera" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Botonera — sonidos a un toque</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#soundboard">Ir a la botonera</a>
+
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Botonera, inicio">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>BOTONERA</span>
+        </a>
+
+        <div class="topbar-actions">
+          <span class="network-pill" id="network-pill">
+            <span class="network-dot" aria-hidden="true"></span>
+            <span id="network-label">En línea</span>
+          </span>
+          <button class="button button-ghost button-compact" id="install-button" type="button" hidden>
+            Instalar
+          </button>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span> Tu audio, siempre listo</p>
+            <h1 id="hero-title">Hacé ruido.<br /><em>Incluso offline.</em></h1>
+            <p class="hero-description">
+              Cargá tus sonidos, elegí cómo se reproducen y llevá tu botonera instalada en el teléfono.
+              Todo queda guardado en este dispositivo.
+            </p>
+            <div class="hero-actions">
+              <button class="button button-primary" id="add-sounds-hero" type="button">
+                <span aria-hidden="true">＋</span> Agregar sonidos
+              </button>
+              <button class="button button-secondary" id="open-data-dialog" type="button">
+                Importar / exportar
+              </button>
+            </div>
+          </div>
+
+          <aside class="hero-meter" aria-label="Estado de la botonera">
+            <div>
+              <strong id="sound-count">0</strong>
+              <span>sonidos</span>
+            </div>
+            <div class="meter-divider" aria-hidden="true"></div>
+            <div>
+              <strong id="storage-used">0 MB</strong>
+              <span>en el dispositivo</span>
+            </div>
+          </aside>
+        </section>
+
+        <section class="board-section" id="soundboard" aria-labelledby="board-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Panel principal</p>
+              <h2 id="board-title">Mis sonidos</h2>
+            </div>
+            <div class="section-actions">
+              <button class="button button-secondary button-compact" id="stop-all" type="button" disabled>
+                <span class="stop-icon" aria-hidden="true"></span> Detener todo
+              </button>
+              <button class="button button-primary button-compact desktop-add" id="add-sounds-toolbar" type="button">
+                ＋ Agregar
+              </button>
+            </div>
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <div class="empty-visual" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <p class="eyebrow"><span></span> Tu panel está esperando</p>
+            <h3>Agregá tu primer sonido</h3>
+            <p>Podés elegir MP3, WAV, M4A, OGG u otro formato compatible con tu dispositivo.</p>
+            <button class="button button-primary" id="add-sounds-empty" type="button">Elegir archivos</button>
+          </div>
+
+          <div class="sound-grid" id="sound-grid" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer>
+        <p>Los archivos permanecen en tu dispositivo.</p>
+        <button class="text-button" id="show-install-help" type="button">Cómo instalar y usar offline</button>
+      </footer>
+    </div>
+
+    <button class="floating-add" id="floating-add" type="button" aria-label="Agregar sonidos">
+      <span aria-hidden="true">＋</span>
+    </button>
+
+    <input id="audio-input" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.opus,.flac" multiple hidden />
+    <input id="backup-input" type="file" accept="application/json,.json,.botonera" hidden />
+
+    <dialog class="dialog" id="edit-dialog">
+      <form method="dialog" id="edit-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="section-kicker">Editar botón</p>
+            <h2>Personalizar sonido</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Cerrar" formnovalidate>×</button>
+        </div>
+        <label class="field">
+          <span>Nombre del botón</span>
+          <input id="edit-label" name="label" maxlength="42" required autocomplete="off" />
+        </label>
+        <div class="dialog-actions split-actions">
+          <button class="button button-danger" id="delete-sound" type="button">Eliminar</button>
+          <div>
+            <button class="button button-secondary" value="cancel" formnovalidate>Cancelar</button>
+            <button class="button button-primary" value="save">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="data-dialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="section-kicker">Tus datos</p>
+          <h2>Importar o exportar</h2>
+        </div>
+        <button class="icon-button" id="close-data-dialog" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <p class="dialog-copy">
+        El respaldo incluye botones, modos y archivos de audio. Importarlo reemplaza la botonera actual.
+      </p>
+      <div class="data-actions">
+        <button class="data-card" id="export-backup" type="button">
+          <span class="data-card-icon" aria-hidden="true">↓</span>
+          <span><strong>Exportar respaldo</strong><small>Descargar un archivo .botonera.json</small></span>
+        </button>
+        <button class="data-card" id="import-backup" type="button">
+          <span class="data-card-icon" aria-hidden="true">↑</span>
+          <span><strong>Importar respaldo</strong><small>Recuperar sonidos y configuración</small></span>
+        </button>
+      </div>
+    </dialog>
+
+    <dialog class="dialog" id="install-dialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="section-kicker">Disponible sin conexión</p>
+          <h2>Instalá Botonera</h2>
+        </div>
+        <button class="icon-button" id="close-install-dialog" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <ol class="install-steps">
+        <li><strong>Android / Chrome:</strong> abrí el menú del navegador y elegí “Instalar aplicación”.</li>
+        <li><strong>iPhone / Safari:</strong> tocá Compartir y después “Agregar a inicio”.</li>
+        <li>Abrila una vez instalada. Tus sonidos quedarán disponibles aunque no tengas conexión.</li>
+      </ol>
+    </dialog>
+
+    <div class="loading-overlay" id="loading-overlay" hidden>
+      <div class="loader" aria-hidden="true"></div>
+      <strong id="loading-title">Procesando sonidos…</strong>
+      <span id="loading-detail">Esto puede tardar unos segundos.</span>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <template id="sound-card-template">
+      <article class="sound-card">
+        <div class="card-topline">
+          <span class="card-number"></span>
+          <button class="icon-button edit-button" type="button" aria-label="Editar sonido">•••</button>
+        </div>
+        <button class="sound-pad" type="button">
+          <span class="pad-glow" aria-hidden="true"></span>
+          <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <strong class="sound-name"></strong>
+          <span class="sound-hint"></span>
+        </button>
+        <div class="mode-control" role="group" aria-label="Modo de reproducción">
+          <button type="button" data-mode="oneshot" title="Reproducir completo">
+            <span aria-hidden="true">▶</span><small>Completo</small>
+          </button>
+          <button type="button" data-mode="hold" title="Reproducir mientras se mantiene presionado">
+            <span aria-hidden="true">◉</span><small>Mantener</small>
+          </button>
+          <button type="button" data-mode="loop" title="Reproducir en loop">
+            <span aria-hidden="true">↻</span><small>Loop</small>
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>
