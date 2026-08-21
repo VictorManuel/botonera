@@ -28,28 +28,40 @@ npm run check
 npm run build
 ```
 
-## Publicar en Cloudflare Pages
+## Contenedor local
 
-### Opción recomendada: GitHub + despliegue automático
+La imagen ejecuta las validaciones y genera `dist` en una etapa con Node. La etapa final sirve únicamente los archivos estáticos con Nginx en el puerto 80.
 
-1. Crear un repositorio en GitHub y subir el contenido de esta carpeta.
-2. Crear o iniciar sesión en una cuenta de Cloudflare.
-3. Ir a **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-4. Autorizar GitHub y elegir el repositorio de Botonera.
-5. Configurar el despliegue:
-   - Production branch: `main`
-   - Framework preset: `None`
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-6. Seleccionar **Save and Deploy**.
-7. Abrir la URL `https://<nombre-del-proyecto>.pages.dev` y verificar la instalación/offline.
+```bash
+docker compose up --build
+```
 
-Cada `push` posterior a `main` publicará una versión nueva automáticamente.
+Abrir [http://localhost:8080](http://localhost:8080). El chequeo de salud está disponible en `http://localhost:8080/health`.
 
-### Opción rápida: carga directa
+## Publicar en Dokploy
 
-Ejecutar primero `npm run build`. En Cloudflare Pages elegir **Create application** → **Get started** → **Drag and drop your files** y subir la carpeta `dist`. Esta modalidad no puede convertirse luego en una integración Git dentro del mismo proyecto de Pages.
+El despliegue de producción se construye desde la rama `main` del repositorio privado `VictorManuel/botonera`.
+
+1. En Dokploy crear un proyecto y luego una **Application**.
+2. En **Provider**, conectar GitHub y seleccionar:
+   - Owner: `VictorManuel`
+   - Repository: `botonera`
+   - Branch: `main`
+   - Trigger: `push`, para desplegar automáticamente cada actualización de `main`.
+3. En **Build Type**, seleccionar **Dockerfile** y configurar:
+   - Dockerfile Path: `Dockerfile`
+   - Docker Context Path: `.`
+   - Docker Build Stage: dejar vacío para usar la etapa final `runtime`.
+4. No agregar variables de entorno: esta aplicación no las necesita.
+5. En **Domains**, agregar el dominio o generar uno temporal y dirigirlo al puerto `80` del contenedor.
+6. Activar HTTPS y desplegar.
+7. Verificar:
+   - `/health` responde `ok`.
+   - La página carga por HTTPS.
+   - La PWA puede instalarse y abrirse sin conexión después de la primera visita.
+
+Si se usa el proveedor Git genérico en vez de la integración de GitHub, hay que registrar la clave SSH pública de Dokploy en GitHub y usar `git@github.com:VictorManuel/botonera.git` con la rama `main`.
 
 ## Privacidad y almacenamiento
 
-Los audios no se suben a Cloudflare ni a ningún servidor. El navegador puede borrar los datos si el usuario limpia el almacenamiento del sitio; por eso se recomienda exportar respaldos regularmente.
+Los audios no se suben a Dokploy ni a ningún servidor. El navegador puede borrar los datos si el usuario limpia el almacenamiento del sitio; por eso se recomienda exportar respaldos regularmente.

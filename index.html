@@ -19,9 +19,9 @@
 
     <div class="page-shell">
       <header class="topbar">
-        <a class="brand" href="#top" aria-label="Botonera, inicio">
+        <a class="brand" href="#top" aria-label="Sonidera, inicio">
           <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>BOTONERA</span>
+          <span>SONIDERA</span>
         </a>
 
         <div class="topbar-actions">
@@ -36,14 +36,8 @@
       </header>
 
       <main id="top">
-        <section class="hero" aria-labelledby="hero-title">
+        <section class="hero" aria-label="Acciones principales">
           <div class="hero-copy">
-            <p class="eyebrow"><span></span> Tu audio, siempre listo</p>
-            <h1 id="hero-title">Hacé ruido.<br /><em>Incluso offline.</em></h1>
-            <p class="hero-description">
-              Cargá tus sonidos, elegí cómo se reproducen y llevá tu botonera instalada en el teléfono.
-              Todo queda guardado en este dispositivo.
-            </p>
             <div class="hero-actions">
               <button class="button button-primary" id="add-sounds-hero" type="button">
                 <span aria-hidden="true">＋</span> Agregar sonidos
@@ -70,7 +64,6 @@
         <section class="board-section" id="soundboard" aria-labelledby="board-title">
           <div class="section-heading">
             <div>
-              <p class="section-kicker">Panel principal</p>
               <h2 id="board-title">Mis sonidos</h2>
             </div>
             <div class="section-actions">
@@ -183,7 +176,12 @@
       <article class="sound-card">
         <div class="card-topline">
           <span class="card-number"></span>
-          <button class="icon-button edit-button" type="button" aria-label="Editar sonido">•••</button>
+          <div class="card-actions">
+            <button class="icon-button stop-sound-button" type="button" aria-label="Detener sonido" title="Detener sonido" disabled>
+              <span aria-hidden="true">■</span>
+            </button>
+            <button class="icon-button edit-button" type="button" aria-label="Editar sonido">•••</button>
+          </div>
         </div>
         <button class="sound-pad" type="button">
           <span class="pad-glow" aria-hidden="true"></span>

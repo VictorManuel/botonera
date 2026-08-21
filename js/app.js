@@ -87,19 +87,22 @@ function getButton(id) {
   return state.buttons.find((button) => button.id === id);
 }
 
+function applyPlayingState(card, id, isPlaying) {
+  card.classList.toggle("is-playing", isPlaying);
+  const pad = card.querySelector(".sound-pad");
+  card.querySelector(".stop-sound-button").disabled = !isPlaying;
+  pad.setAttribute("aria-pressed", String(isPlaying));
+  const mode = getMode(id);
+  pad.querySelector(".sound-hint").textContent = isPlaying
+    ? mode === MODES.LOOP
+      ? "Reproduciendo en loop · tocá para detener"
+      : "Reproduciendo · tocá para reiniciar"
+    : MODE_HINTS[mode];
+}
+
 function updatePlayingState(id, isPlaying) {
   const card = elements.soundGrid.querySelector(`[data-id="${CSS.escape(id)}"]`);
-  if (card) {
-    card.classList.toggle("is-playing", isPlaying);
-    const pad = card.querySelector(".sound-pad");
-    pad.setAttribute("aria-pressed", String(isPlaying));
-    const mode = getMode(id);
-    pad.querySelector(".sound-hint").textContent = isPlaying
-      ? mode === MODES.LOOP
-        ? "Reproduciendo en loop · tocá para detener"
-        : "Reproduciendo · tocá para reiniciar"
-      : MODE_HINTS[mode];
-  }
+  if (card) applyPlayingState(card, id, isPlaying);
   elements.stopAll.disabled = audio.active.size === 0;
 }
 
@@ -129,6 +132,7 @@ function createSoundCard(button, index) {
   pad.setAttribute("aria-pressed", "false");
   bindPadEvents(pad, button.id);
 
+  card.querySelector(".stop-sound-button").addEventListener("click", () => audio.stop(button.id));
   card.querySelector(".edit-button").addEventListener("click", () => openEditDialog(button.id));
   card.querySelectorAll("[data-mode]").forEach((modeButton) => {
     const isSelected = modeButton.dataset.mode === mode;
@@ -137,10 +141,15 @@ function createSoundCard(button, index) {
     modeButton.addEventListener("click", () => changeMode(button.id, modeButton.dataset.mode));
   });
 
+  applyPlayingState(card, button.id, audio.isPlaying(button.id));
+
   return card;
 }
 
 function bindPadEvents(pad, id) {
+  pad.addEventListener("contextmenu", (event) => event.preventDefault());
+  pad.addEventListener("dragstart", (event) => event.preventDefault());
+
   pad.addEventListener("pointerdown", async (event) => {
     if (event.button !== 0 && event.pointerType === "mouse") return;
     event.preventDefault();

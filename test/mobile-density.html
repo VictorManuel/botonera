@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Fixture móvil — Botonera</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <main>
+        <section class="board-section" aria-labelledby="fixture-title">
+          <div class="section-heading">
+            <div>
+              <h2 id="fixture-title">Mis sonidos</h2>
+            </div>
+            <button class="button button-secondary button-compact" type="button">Detener todo</button>
+          </div>
+          <div class="sound-grid" id="fixture-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="fixture-card">
+      <article class="sound-card">
+        <div class="card-topline">
+          <span class="card-number"></span>
+          <div class="card-actions">
+            <button class="icon-button stop-sound-button" type="button" aria-label="Detener sonido" title="Detener sonido" disabled>
+              <span aria-hidden="true">■</span>
+            </button>
+            <button class="icon-button edit-button" type="button" aria-label="Editar sonido">•••</button>
+          </div>
+        </div>
+        <button class="sound-pad" type="button">
+          <span class="pad-glow" aria-hidden="true"></span>
+          <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <strong class="sound-name"></strong>
+          <span class="sound-hint">Tocá para reproducir completo</span>
+        </button>
+        <div class="mode-control" role="group" aria-label="Modo de reproducción">
+          <button class="is-selected" type="button"><span>▶</span><small>Completo</small></button>
+          <button type="button"><span>◉</span><small>Mantener</small></button>
+          <button type="button"><span>↻</span><small>Loop</small></button>
+        </div>
+      </article>
+    </template>
+
+    <script>
+      const names = ["Aplausos", "Redoble", "Risa", "Alerta", "Campana", "Victoria", "Error", "Bocina", "Intro", "Final"];
+      const colors = ["#ff5a36", "#d8ff5e", "#ffd166", "#79d9ff", "#ff8ac7", "#b8a0ff"];
+      const grid = document.querySelector("#fixture-grid");
+      const template = document.querySelector("#fixture-card");
+      names.forEach((name, index) => {
+        const card = template.content.firstElementChild.cloneNode(true);
+        card.style.setProperty("--accent", colors[index % colors.length]);
+        card.querySelector(".card-number").textContent = String(index + 1).padStart(2, "0");
+        card.querySelector(".sound-name").textContent = name;
+        grid.append(card);
+      });
+    </script>
+  </body>
+</html>
