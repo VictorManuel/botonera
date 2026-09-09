@@ -20,6 +20,7 @@ import {
   replaceModes,
   setMode,
 } from "./config.js";
+import { applyTheme, readTheme, saveTheme, THEMES } from "./theme.js";
 
 const ACCENTS = ["#ff5a36", "#d8ff5e", "#ffd166", "#79d9ff", "#ff8ac7", "#b8a0ff"];
 
@@ -54,6 +55,7 @@ const elements = {
   loadingTitle: document.querySelector("#loading-title"),
   loadingDetail: document.querySelector("#loading-detail"),
   toast: document.querySelector("#toast"),
+  themeSelect: document.querySelector("#theme-select"),
 };
 
 const audio = new AudioEngine((id, isPlaying) => updatePlayingState(id, isPlaying));
@@ -348,6 +350,31 @@ function updateNetworkStatus() {
   elements.networkLabel.textContent = online ? "En línea" : "Modo offline";
 }
 
+function initializeThemePicker() {
+  for (const theme of THEMES) {
+    const option = document.createElement("option");
+    option.value = theme.id;
+    option.textContent = theme.label;
+    elements.themeSelect.append(option);
+  }
+
+  const selectedTheme = applyTheme(readTheme());
+  elements.themeSelect.value = selectedTheme;
+  updateThemeColor(selectedTheme);
+
+  elements.themeSelect.addEventListener("change", () => {
+    const theme = applyTheme(saveTheme(elements.themeSelect.value));
+    elements.themeSelect.value = theme;
+    updateThemeColor(theme);
+    showToast(`Estilo ${THEMES.find((item) => item.id === theme)?.label || theme} activado.`);
+  });
+}
+
+function updateThemeColor(themeId) {
+  const color = THEMES.find((theme) => theme.id === themeId)?.themeColor;
+  if (color) document.querySelector('meta[name="theme-color"]')?.setAttribute("content", color);
+}
+
 async function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   try {
@@ -430,6 +457,7 @@ function bindGlobalEvents() {
 }
 
 async function initialize() {
+  initializeThemePicker();
   bindGlobalEvents();
   updateNetworkStatus();
   await registerServiceWorker();

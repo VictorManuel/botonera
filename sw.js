@@ -1,4 +1,4 @@
-const CACHE_VERSION = "botonera-shell-v1";
+const CACHE_VERSION = "botonera-shell-v2";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -8,6 +8,7 @@ const APP_SHELL = [
   "/js/audio-engine.js",
   "/js/backup.js",
   "/js/config.js",
+  "/js/theme.js",
   "/js/db.js",
   "/assets/icons/icon.svg",
   "/assets/icons/icon-192.png",

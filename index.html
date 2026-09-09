@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="digital">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -12,6 +12,12 @@
     <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
     <link rel="stylesheet" href="/styles.css" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("botonera.visual-theme.v1");
+        if (["digital", "cartoon"].includes(savedTheme)) document.documentElement.dataset.theme = savedTheme;
+      } catch {}
+    </script>
     <title>Botonera — sonidos a un toque</title>
   </head>
   <body>
@@ -45,6 +51,11 @@
               <button class="button button-secondary" id="open-data-dialog" type="button">
                 Importar / exportar
               </button>
+              <label class="theme-picker" for="theme-select">
+                <span aria-hidden="true">✦</span>
+                <span class="theme-picker-label">Estilo</span>
+                <select id="theme-select" aria-label="Estilo visual"></select>
+              </label>
             </div>
           </div>
 

@@ -11,6 +11,11 @@ Botonera de sonidos mobile-first que funciona sin conexión. Los audios permanec
 - Respaldo portable con configuración y audios en un archivo `.botonera.json`.
 - App instalable y offline mediante Web App Manifest y Service Worker.
 - Diseño responsive, táctil y accesible.
+- Selector de apariencia con temas intercambiables: Digital y Cartoon.
+
+## Crear un tema visual nuevo
+
+La apariencia está separada del comportamiento de audio. Para dibujar un diseño a mano y convertirlo en un tema nuevo, seguí la [guía de plantillas visuales](docs/crear-tema-visual.md). Allí figura qué pantallas y estados conviene entregar, cómo fotografiar o escanear el boceto y qué información necesito para implementarlo sin cambiar la funcionalidad.
 
 ## Desarrollo local
 

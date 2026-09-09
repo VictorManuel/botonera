@@ -287,6 +287,37 @@ button {
   margin-top: 0;
 }
 
+.theme-picker {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.theme-picker select {
+  min-height: 34px;
+  padding: 0 1.8rem 0 0.65rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--panel-soft);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+}
+
+.theme-picker select:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 2px;
+}
+
 .hero-meter {
   min-width: 0;
   align-self: end;
@@ -716,6 +747,15 @@ footer p {
     width: 100%;
   }
 
+  .theme-picker {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .theme-picker select {
+    flex: 1;
+  }
+
   .section-heading {
     margin-bottom: 0.75rem;
   }
@@ -1036,6 +1076,316 @@ footer p {
 
 @media (min-width: 1120px) {
   .sound-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/*
+ * Theme: Cartoon
+ * Visual-only overrides stay scoped to the root theme attribute so future
+ * templates can coexist without duplicating markup or audio behavior.
+ */
+html[data-theme="cartoon"] {
+  color-scheme: light;
+  --bg: #f8e9b8;
+  --panel: #fff9df;
+  --panel-soft: #f2d98f;
+  --line: #171510;
+  --text: #171510;
+  --muted: #665a45;
+  --orange: #ff6542;
+  --orange-dark: #de3f27;
+  --lime: #b8e04b;
+  --cream: #fff9df;
+  --danger: #c72f42;
+  --shadow: 7px 8px 0 #171510;
+  --radius: 24px 18px 26px 20px;
+  font-family: "Comic Sans MS", "Bradley Hand", "Chalkboard SE", ui-rounded, system-ui, sans-serif;
+}
+
+html[data-theme="cartoon"] body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 101, 66, 0.18) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 84% 72%, rgba(23, 21, 16, 0.1) 0 1.5px, transparent 2px),
+    linear-gradient(176deg, rgba(255, 255, 255, 0.42), transparent 38%);
+  background-size: 34px 34px, 25px 25px, 100% 100%;
+}
+
+html[data-theme="cartoon"] .topbar,
+html[data-theme="cartoon"] .board-section,
+html[data-theme="cartoon"] footer {
+  border-color: var(--text);
+  border-width: 3px;
+}
+
+html[data-theme="cartoon"] .brand {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  transform: rotate(-1deg);
+}
+
+html[data-theme="cartoon"] .brand-mark {
+  border: 3px solid var(--text);
+  border-radius: 48% 42% 50% 38%;
+  box-shadow: 4px 4px 0 var(--text);
+  transform: rotate(-5deg);
+}
+
+html[data-theme="cartoon"] .network-dot {
+  border: 2px solid var(--text);
+  box-shadow: 2px 2px 0 var(--text);
+}
+
+html[data-theme="cartoon"] .button,
+html[data-theme="cartoon"] .theme-picker {
+  border: 3px solid var(--text);
+  border-radius: 14px 10px 16px 11px;
+  box-shadow: 4px 5px 0 var(--text);
+  font-weight: 900;
+  letter-spacing: 0.015em;
+}
+
+html[data-theme="cartoon"] .button:hover:not(:disabled) {
+  transform: translate(-1px, -2px) rotate(-0.5deg);
+}
+
+html[data-theme="cartoon"] .button:active:not(:disabled) {
+  box-shadow: 1px 2px 0 var(--text);
+  transform: translate(3px, 3px) rotate(0.5deg);
+}
+
+html[data-theme="cartoon"] .button-primary {
+  color: var(--text);
+  background: var(--orange);
+}
+
+html[data-theme="cartoon"] .button-secondary,
+html[data-theme="cartoon"] .button-ghost,
+html[data-theme="cartoon"] .theme-picker {
+  background: var(--panel);
+}
+
+html[data-theme="cartoon"] .theme-picker select {
+  border: 2px solid var(--text);
+  background: #ffe178;
+}
+
+html[data-theme="cartoon"] .hero-meter {
+  border: 3px solid var(--text);
+  border-radius: 20px 15px 23px 14px;
+  background: #a9dded;
+  box-shadow: 5px 6px 0 var(--text);
+  transform: rotate(1deg);
+}
+
+html[data-theme="cartoon"] .meter-divider {
+  width: 3px;
+  background: var(--text);
+  transform: rotate(3deg);
+}
+
+html[data-theme="cartoon"] .section-heading h2,
+html[data-theme="cartoon"] .dialog h2 {
+  letter-spacing: -0.03em;
+  text-shadow: 2px 2px 0 #fff9df;
+}
+
+html[data-theme="cartoon"] .empty-state {
+  border: 3px dashed var(--text);
+  background: rgba(255, 249, 223, 0.72);
+}
+
+html[data-theme="cartoon"] .empty-visual {
+  border: 3px solid var(--text);
+  background: #a9dded;
+}
+
+html[data-theme="cartoon"] .sound-card {
+  overflow: visible;
+  border: 3px solid var(--text);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 6px 7px 0 var(--text);
+  transform: rotate(-0.65deg);
+}
+
+html[data-theme="cartoon"] .sound-card:nth-child(3n + 2) {
+  border-radius: 18px 26px 19px 25px;
+  transform: rotate(0.7deg);
+}
+
+html[data-theme="cartoon"] .sound-card:nth-child(3n) {
+  border-radius: 27px 18px 23px 16px;
+  transform: rotate(-0.2deg);
+}
+
+html[data-theme="cartoon"] .sound-card.is-playing {
+  border-color: var(--text);
+  animation: cartoon-bop 420ms ease-in-out infinite alternate;
+}
+
+html[data-theme="cartoon"] .card-number {
+  color: var(--text);
+  font-family: "Comic Sans MS", "Bradley Hand", ui-rounded, sans-serif;
+  font-weight: 900;
+}
+
+html[data-theme="cartoon"] .icon-button {
+  border: 2px solid transparent;
+  color: var(--text);
+}
+
+html[data-theme="cartoon"] .icon-button:hover,
+html[data-theme="cartoon"] .sound-card.is-playing .stop-sound-button {
+  border-color: var(--text);
+  background: #ffe178;
+  box-shadow: 2px 2px 0 var(--text);
+}
+
+html[data-theme="cartoon"] .sound-pad {
+  overflow: hidden;
+  border: 3px solid var(--text);
+  border-radius: 23px 16px 25px 18px;
+  color: var(--text);
+  box-shadow: 5px 6px 0 var(--text);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+html[data-theme="cartoon"] .sound-pad::before,
+html[data-theme="cartoon"] .sound-pad::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 25px;
+  height: 13px;
+  pointer-events: none;
+  border-top: 3px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.72;
+}
+
+html[data-theme="cartoon"] .sound-pad::before {
+  top: 12px;
+  right: 14px;
+  transform: rotate(25deg);
+}
+
+html[data-theme="cartoon"] .sound-pad::after {
+  right: 17px;
+  bottom: 15px;
+  transform: rotate(-18deg);
+}
+
+html[data-theme="cartoon"] .sound-pad:hover {
+  filter: saturate(1.08);
+  transform: translate(-1px, -2px) rotate(-0.4deg);
+}
+
+html[data-theme="cartoon"] .sound-pad:active,
+html[data-theme="cartoon"] .sound-card.is-playing .sound-pad {
+  box-shadow: 1px 2px 0 var(--text);
+  transform: translate(4px, 4px) rotate(0.5deg);
+}
+
+html[data-theme="cartoon"] .pad-glow {
+  background: rgba(255, 255, 255, 0.42);
+  filter: none;
+  border: 3px solid rgba(23, 21, 16, 0.16);
+}
+
+html[data-theme="cartoon"] .wave {
+  transform: rotate(-4deg);
+}
+
+html[data-theme="cartoon"] .wave i {
+  border: 1px solid var(--text);
+  box-shadow: 2px 1px 0 var(--text);
+}
+
+html[data-theme="cartoon"] .sound-name {
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  text-shadow: 1px 2px 0 rgba(255, 255, 255, 0.38);
+}
+
+html[data-theme="cartoon"] .mode-control button {
+  color: var(--text);
+  font-weight: 900;
+}
+
+html[data-theme="cartoon"] .mode-control button.is-selected {
+  border: 2px solid var(--text);
+  background: #ffe178;
+  box-shadow: 2px 3px 0 var(--text);
+  transform: rotate(-1deg);
+}
+
+html[data-theme="cartoon"] .floating-add {
+  border: 3px solid var(--text);
+  color: var(--text);
+  box-shadow: 5px 6px 0 var(--text);
+  transform: rotate(-3deg);
+}
+
+html[data-theme="cartoon"] .dialog {
+  border: 4px solid var(--text);
+  border-radius: 25px 18px 28px 17px;
+  background: var(--panel);
+  box-shadow: 9px 10px 0 var(--text);
+}
+
+html[data-theme="cartoon"] .dialog::backdrop {
+  background: rgba(52, 43, 25, 0.62);
+}
+
+html[data-theme="cartoon"] .field input,
+html[data-theme="cartoon"] .data-card {
+  border: 3px solid var(--text);
+  background: #fffdf2;
+  color: var(--text);
+  box-shadow: 3px 4px 0 var(--text);
+}
+
+html[data-theme="cartoon"] .data-card-icon {
+  border: 2px solid var(--text);
+  color: var(--text);
+}
+
+html[data-theme="cartoon"] .toast {
+  border: 3px solid var(--text);
+  background: #ffe178;
+  box-shadow: 5px 6px 0 var(--text);
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+html[data-theme="cartoon"] .loading-overlay {
+  background: rgba(248, 233, 184, 0.94);
+}
+
+html[data-theme="cartoon"] .loader {
+  border-color: rgba(23, 21, 16, 0.18);
+  border-top-color: var(--orange);
+}
+
+@keyframes cartoon-bop {
+  from { transform: translateY(0) rotate(-0.65deg); }
+  to { transform: translateY(-3px) rotate(0.65deg); }
+}
+
+@media (max-width: 619px) {
+  html[data-theme="cartoon"] .sound-card {
+    border-width: 2px;
+    box-shadow: 3px 4px 0 var(--text);
+  }
+
+  html[data-theme="cartoon"] .sound-pad {
+    border-width: 2px;
+    box-shadow: 3px 3px 0 var(--text);
+  }
+
+  html[data-theme="cartoon"] .sound-pad::before,
+  html[data-theme="cartoon"] .sound-pad::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
