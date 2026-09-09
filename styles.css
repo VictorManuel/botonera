@@ -1,3 +1,5 @@
+/* Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0 */
+
 :root {
   color-scheme: dark;
   --bg: #11100f;
@@ -698,6 +700,15 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+.footer-link {
+  color: var(--text);
+  text-underline-offset: 3px;
+}
+
+.footer-link:hover {
+  color: var(--lime);
 }
 
 .text-button {

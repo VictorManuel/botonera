@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 export const DEFAULT_THEME = "digital";
 export const THEME_STORAGE_KEY = "botonera.visual-theme.v1";
 
@@ -34,4 +36,3 @@ export function applyTheme(theme, root = globalThis.document?.documentElement) {
   if (root) root.dataset.theme = nextTheme;
   return nextTheme;
 }
-

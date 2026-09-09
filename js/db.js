@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 const DB_NAME = "botonera-db";
 const DB_VERSION = 1;
 const BUTTONS_STORE = "buttons";

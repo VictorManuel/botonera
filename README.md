@@ -1,6 +1,13 @@
-# Botonera PWA
+# Sonidera
 
-Botonera de sonidos mobile-first que funciona sin conexión. Los audios permanecen en IndexedDB dentro del dispositivo y el modo de cada botón se guarda en `localStorage`.
+[![Licencia Apache 2.0](https://img.shields.io/badge/licencia-Apache%202.0-d8ff5e.svg)](LICENSE)
+[![GitHub Pages](https://github.com/VictorManuel/botonera/actions/workflows/pages.yml/badge.svg)](https://github.com/VictorManuel/botonera/actions/workflows/pages.yml)
+
+Botonera de sonidos personal, mobile-first, instalable y disponible sin conexión.
+
+**Demo:** [https://victormanuel.github.io/botonera/](https://victormanuel.github.io/botonera/)
+
+Los audios permanecen en IndexedDB dentro del dispositivo y el modo de cada botón se guarda en `localStorage`.
 
 ## Funciones
 
@@ -78,3 +85,11 @@ Las rutas del HTML, el manifiesto y el Service Worker son relativas para que la 
 ## Privacidad y almacenamiento
 
 Los audios no se suben a Dokploy ni a ningún servidor. El navegador puede borrar los datos si el usuario limpia el almacenamiento del sitio; por eso se recomienda exportar respaldos regularmente.
+
+## Proyecto de código abierto
+
+Sonidera es software de código abierto publicado bajo la [Apache License 2.0](LICENSE). Podés usarlo, estudiarlo, modificarlo y distribuirlo respetando sus condiciones.
+
+Las redistribuciones y trabajos derivados deben conservar la licencia, los avisos aplicables y la atribución definida en [`NOTICE`](NOTICE). Consultá [ATTRIBUTION.md](ATTRIBUTION.md) para conocer cómo hacer referencia al proyecto correctamente.
+
+Las contribuciones son bienvenidas. Consultá [CONTRIBUTING.md](CONTRIBUTING.md) antes de abrir un issue o pull request y [SECURITY.md](SECURITY.md) para reportar vulnerabilidades de forma responsable.

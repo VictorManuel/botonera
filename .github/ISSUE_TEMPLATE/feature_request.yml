@@ -1,0 +1,24 @@
+name: Proponer una mejora
+description: Sugerí una función, un tema visual o una mejora de experiencia.
+title: "[Idea]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Necesidad
+      description: ¿Qué problema resolvería esta propuesta?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Contanos cómo imaginás la solución.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: Opcionalmente, mencioná otras soluciones posibles.

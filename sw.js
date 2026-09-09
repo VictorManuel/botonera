@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 const CACHE_VERSION = "botonera-shell-v3";
 const scopedUrl = (path) => new URL(path, self.registration.scope).toString();
 const APP_SHELL = [

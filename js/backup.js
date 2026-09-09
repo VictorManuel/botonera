@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 import { DEFAULT_MODE, VALID_MODES } from "./config.js";
 
 export const BACKUP_VERSION = 1;

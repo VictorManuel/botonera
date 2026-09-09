@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 import { AudioEngine } from "./audio-engine.js";
 import { createBackup, parseBackup } from "./backup.js";
 import {

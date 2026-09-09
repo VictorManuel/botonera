@@ -1,3 +1,5 @@
+// Copyright 2026 Victor M Lorenzo · SPDX-License-Identifier: Apache-2.0
+
 export class AudioEngine {
   constructor(onStateChange = () => {}) {
     this.context = null;
