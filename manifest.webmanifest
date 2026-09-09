@@ -1,11 +1,11 @@
 {
-  "id": "/",
+  "id": "./",
   "name": "Botonera — sonidos a un toque",
   "short_name": "Botonera",
   "description": "Tu botonera de sonidos personal, rápida y disponible sin conexión.",
   "lang": "es",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#11100f",
@@ -13,13 +13,13 @@
   "categories": ["music", "entertainment", "utilities"],
   "icons": [
     {
-      "src": "/assets/icons/icon-192.png",
+      "src": "./assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/icons/icon-512.png",
+      "src": "./assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

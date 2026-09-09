@@ -67,6 +67,14 @@ El despliegue de producción se construye desde la rama `main` del repositorio p
 
 Si se usa el proveedor Git genérico en vez de la integración de GitHub, hay que registrar la clave SSH pública de Dokploy en GitHub y usar `git@github.com:VictorManuel/botonera.git` con la rama `main`.
 
+## GitHub Pages
+
+El workflow `.github/workflows/pages.yml` valida, construye y publica `dist` automáticamente después de cada push a `main`. También puede ejecutarse manualmente desde la pestaña **Actions**.
+
+Sitio: [https://victormanuel.github.io/botonera/](https://victormanuel.github.io/botonera/)
+
+Las rutas del HTML, el manifiesto y el Service Worker son relativas para que la misma compilación funcione tanto bajo `/botonera/` en GitHub Pages como en `/` dentro de Dokploy.
+
 ## Privacidad y almacenamiento
 
 Los audios no se suben a Dokploy ni a ningún servidor. El navegador puede borrar los datos si el usuario limpia el almacenamiento del sitio; por eso se recomienda exportar respaldos regularmente.

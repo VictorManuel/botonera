@@ -1,19 +1,20 @@
-const CACHE_VERSION = "botonera-shell-v2";
+const CACHE_VERSION = "botonera-shell-v3";
+const scopedUrl = (path) => new URL(path, self.registration.scope).toString();
 const APP_SHELL = [
-  "/",
-  "/index.html",
-  "/styles.css",
-  "/manifest.webmanifest",
-  "/js/app.js",
-  "/js/audio-engine.js",
-  "/js/backup.js",
-  "/js/config.js",
-  "/js/theme.js",
-  "/js/db.js",
-  "/assets/icons/icon.svg",
-  "/assets/icons/icon-192.png",
-  "/assets/icons/icon-512.png",
-];
+  "./",
+  "index.html",
+  "styles.css",
+  "manifest.webmanifest",
+  "js/app.js",
+  "js/audio-engine.js",
+  "js/backup.js",
+  "js/config.js",
+  "js/theme.js",
+  "js/db.js",
+  "assets/icons/icon.svg",
+  "assets/icons/icon-192.png",
+  "assets/icons/icon-512.png",
+].map(scopedUrl);
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_VERSION).then((cache) => cache.addAll(APP_SHELL)));
@@ -40,7 +41,7 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_VERSION).then((cache) => cache.put("/index.html", copy));
           return response;
         })
-        .catch(() => caches.match("/index.html")),
+        .catch(() => caches.match(scopedUrl("index.html"))),
     );
     return;
   }

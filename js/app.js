@@ -378,7 +378,7 @@ function updateThemeColor(themeId) {
 async function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   try {
-    await navigator.serviceWorker.register("/sw.js", { scope: "/" });
+    await navigator.serviceWorker.register(new URL("./sw.js", document.baseURI));
   } catch (error) {
     console.error("No se pudo registrar el service worker", error);
   }
